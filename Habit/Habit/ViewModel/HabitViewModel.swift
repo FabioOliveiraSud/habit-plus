@@ -1,0 +1,61 @@
+//
+//  HabitViewModel.swift
+//  Habit
+//
+//  Created by Fabio Avila Oliveira on 12/02/25.
+//
+
+import Foundation
+import SwiftUI
+
+class HabitViewModel: ObservableObject {
+    
+    @Published var uiState: HabitUIState = .emptyList
+    @Published var title = "Atenção"
+    @Published var headline = "Fique ligado!"
+    @Published var desc = "Você está atrasado nos hábitos"
+    
+    func onAppear() {
+        self.uiState == .loading
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            var rows: [HabitCardViewModel] = []
+            
+            rows.append(HabitCardViewModel(id: 1,
+                                           icon: "https://via.placeholder.com/150",
+                                           date: "26/03/2025",
+                                           name: "Estudar as Escrituras",
+                                           label: "horas",
+                                           value: "2",
+                                           state: .green))
+            
+            rows.append(HabitCardViewModel(id: 2,
+                                           icon: "https://via.placeholder.com/150",
+                                           date: "26/03/2025",
+                                           name: "Estudar Programação",
+                                           label: "horas",
+                                           value: "3",
+                                           state: .green))
+            
+            rows.append(HabitCardViewModel(id: 3,
+                                           icon: "https://via.placeholder.com/150",
+                                           date: "26/03/2025",
+                                           name: "Academia",
+                                           label: "horas",
+                                           value: "1,5",
+                                           state: .green))
+            
+            rows.append(HabitCardViewModel(id: 4,
+                                           icon: "https://via.placeholder.com/150",
+                                           date: "26/03/2025",
+                                           name: "Começar o Trabalho",
+                                           label: "horas",
+                                           value: "10",
+                                           state: .green))
+            
+            self.uiState = .fullList(rows)
+            //self.uiState = .error("Falha interna do servidor")
+        }
+    }
+    
+}
