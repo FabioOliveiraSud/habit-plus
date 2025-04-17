@@ -97,14 +97,14 @@ struct HabitCardView_Previews: PreviewProvider {
                 List {
                     HabitCardView(viewModel: HabitCardViewModel(id: 1,
                                                                     icon: "https://via.placeholder.com/150",
-                                                                    date: "26/03/2025",
+                                                                    date: "01/01/2021 00:00:00",
                                                                     name: "Estudar as Escrituras",
                                                                     label: "horas",
                                                                     value: "2",
                                                                     state: .green))
                     HabitCardView(viewModel: HabitCardViewModel(id: 1,
                                                                     icon: "https://via.placeholder.com/150",
-                                                                    date: "26/03/2025",
+                                                                    date: "01/01/2021 00:00:00",
                                                                     name: "Estudar as Escrituras",
                                                                     label: "horas",
                                                                     value: "2",

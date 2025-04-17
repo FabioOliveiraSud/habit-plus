@@ -53,7 +53,7 @@ class SplashViewModel: ObservableObject {
                                 let auth = UserAuth(idToken: success.accessToken,
                                                     refreshToken: success.refreshToken,
                                                     expires: Date().timeIntervalSince1970 + Double(success.expires),
-                                                    TokenType: success.tokenType)
+                                                    tokenType: success.tokenType)
                                 
                                 self.interactor.insertAuth(userAuth: auth )
                                 self.uiState = .goToHomeScreen
