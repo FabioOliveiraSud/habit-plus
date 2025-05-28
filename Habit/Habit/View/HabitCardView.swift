@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HabitCardView: View {
     
@@ -20,7 +21,8 @@ struct HabitCardView: View {
                 destination: HabitDetailView(viewModel:
                   HabitDetailViewModel(id: viewModel.id,
                                        name: viewModel.name,
-                                       label: viewModel.label)),
+                                       label: viewModel.label,
+                                       interactor: HabitDetailInteractor())),
                 isActive: self.$action,
                 label: {
                     EmptyView()
@@ -104,14 +106,16 @@ struct HabitCardView_Previews: PreviewProvider {
                                                                     name: "Estudar as Escrituras",
                                                                     label: "horas",
                                                                     value: "2",
-                                                                    state: .green))
+                                                                    state: .green,
+                                                                    habitPublisher: PassthroughSubject<Bool, Never>()))
                     HabitCardView(viewModel: HabitCardViewModel(id: 1,
                                                                     icon: "https://via.placeholder.com/150",
                                                                     date: "01/01/2021 00:00:00",
                                                                     name: "Estudar as Escrituras",
                                                                     label: "horas",
                                                                     value: "2",
-                                                                    state: .green))
+                                                                    state: .green,
+                                                                    habitPublisher: PassthroughSubject<Bool, Never>()))
                     }.frame(maxWidth: .infinity)
                         .navigationTitle("Teste")
                 }

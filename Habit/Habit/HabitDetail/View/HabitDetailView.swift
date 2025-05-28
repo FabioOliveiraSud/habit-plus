@@ -42,7 +42,9 @@ struct HabitDetailView: View {
             
             Text("Os registros devem ser feitos em até 24h. \nHábitos se constroem todos os dias :)")
             
-            LoadingButtonView(action: {
+            LoadingButtonView(
+                action: {
+                    viewModel.save()
                 
             }, text: "Salvar",
             showProgress: self.viewModel.uiState == .loading,
@@ -66,13 +68,20 @@ struct HabitDetailView: View {
         }
         .padding(.horizontal, 8)
         .padding(.top, 32)
+        onAppear {
+            viewModel.$uiState.sink { uiState in
+                if uiState == .success {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }.store(in: &viewModel.cancellables)
+        }
     }
 }
 
 struct HabitDetailView_Preview: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
-            HabitDetailView(viewModel: HabitDetailViewModel(id: 1, name: "Tocar Guitarra", label: "horas"))
+            HabitDetailView(viewModel: HabitDetailViewModel(id: 1, name: "Tocar Guitarra", label: "horas", interactor: HabitDetailInteractor()))
                 .preferredColorScheme($0)
         }
     }
