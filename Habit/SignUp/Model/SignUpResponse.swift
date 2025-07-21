@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct SignUpResponse {
+struct SignUpResponse: Decodable {
+    
     let accessToken: String
     let refreshToken: String
     let expires: Int

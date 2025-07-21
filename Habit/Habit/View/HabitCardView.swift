@@ -34,8 +34,10 @@ struct HabitCardView: View {
             } label: {
                 
                 HStack {
-                    Image(systemName: "pencil")
-                        .padding(.horizontal, 8)
+                    ImageView(url: viewModel.icon)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 32, height: 32)
+                        .clipped()
                     
                     Spacer()
                     
@@ -43,7 +45,7 @@ struct HabitCardView: View {
                         
                         Spacer()
                         
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 0) {
                             
                             Text(viewModel.name)
                                 .foregroundColor(Color.orange)
@@ -57,11 +59,11 @@ struct HabitCardView: View {
                                 .bold()
                             
                             
-                        }.frame(maxWidth: 300, alignment: .leading)
+                        }.frame(maxWidth: 200, alignment: .leading)
                         
                         Spacer()
                         
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 20) {
                             
                             Text("Registrado")
                                 .foregroundColor(Color.orange)
@@ -79,11 +81,11 @@ struct HabitCardView: View {
                     
                     Spacer()
                 }
-                .padding()
+                //.padding()
                 .cornerRadius(4.0)
             }
             Rectangle()
-                .frame(width: 8)
+                .frame(width: 10)
                 .foregroundColor(viewModel.state)
         }.background(
             RoundedRectangle(cornerRadius: 8.0)

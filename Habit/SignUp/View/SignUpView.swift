@@ -48,11 +48,11 @@ struct SignUpView: View {
 
 extension SignUpView {
     var fullNameField: some View {
-        EditTextView(text: $viewModel.fullName,
+        EditTextView(text: $viewModel.name,
                      placeholder: "Nome Completo *",
                      keyboard: .alphabet,
                      error: "e-mail inválido",
-                     failure: viewModel.fullName.count < 3)
+                     failure: viewModel.name.count < 3)
     }
 }
 
@@ -128,7 +128,7 @@ extension SignUpView {
                showProgress: self.viewModel.uiState == SignUpUIState.loading,
                         disable: !viewModel.email.isEmail() ||
                         viewModel.password.count < 8 ||
-                        viewModel.fullName.count < 3 ||
+                        viewModel.name.count < 3 ||
                         viewModel.document.count != 11 ||
                         viewModel.phone.count < 10 || viewModel.phone.count >= 12 ||
                         viewModel.birthday.count != 10)

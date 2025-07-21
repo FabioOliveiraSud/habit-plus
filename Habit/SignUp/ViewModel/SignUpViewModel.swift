@@ -10,7 +10,7 @@ import Combine
 
 class SignUpViewModel: ObservableObject {
     
-    @Published var fullName = ""
+    @Published var name = ""
     @Published var email = ""
     @Published var password = ""
     @Published var document = ""
@@ -54,17 +54,17 @@ class SignUpViewModel: ObservableObject {
         formatter.dateFormat = "yyyy-MM-dd"
         let birthday = formatter.string(from: dateFormatted)
         
-        let signUpRequest = SignUpRequest(fullName: fullName,
-                                            email: email,
-                                            password: password,
-                                            document: document,
-                                            phone: phone,
-                                            birthday: birthday,
-                                            gender: gender.index)
+        let signUpRequest = SignUpRequest(name: name,
+                                          email: email,
+                                          document: document,
+                                          phone: phone,
+                                          gender: gender.index,
+                                          birthday: birthday,
+                                          password: password)
         
         cancellableSignUp = interactor.postUser(signUpRequest: signUpRequest)
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+             .sink { completion in
                 switch(completion) {
                     case .failure(let appError):
                      self.uiState = .error(appError.message)
@@ -97,9 +97,8 @@ class SignUpViewModel: ObservableObject {
                             self.publisher.send(created)
                             self.uiState = .success
                         }
-                }
-                
             }
+        }
     }
 }
 
