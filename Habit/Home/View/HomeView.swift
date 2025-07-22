@@ -25,7 +25,8 @@ struct HomeView: View {
                     Image(systemName: "chart.bar")
                     Text("Gráficos")
                 }.tag(1)
-            Text("Conteúdo de Perfil \(selection)")
+            
+            viewModel.profileView()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Perfil")
